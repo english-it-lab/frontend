@@ -1,0 +1,168 @@
+/* ======================global======================== */
+
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    min-height: 100vh;
+    margin: 0;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* =================auth-container================== */
+
+.auth-container {
+    animation-name: auth-appear;
+    animation-duration: 0.9s;
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 3px;
+    height: auto;
+    border-color: white;
+    font-size: medium;
+    align-items: center;
+    background: white;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    padding: 45px;
+}
+
+@keyframes auth-appear {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.auth-container > input {
+    margin-bottom: 10px;
+}
+
+.auth-container > p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.auth-container > h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+
+
+/* =====================auth-change-mode-button===================== */
+
+.auth-change-mode-button {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.auth-change-mode-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+/* ========================auth-form-fields======================= */
+
+.auth-form-fields {
+    width: 100%;
+    margin-right: 28px;
+}
+
+.auth-form-fields > div {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.auth-form-fields > div > p {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    text-align: left;
+}
+
+.auth-form-fields > div > input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.auth-form-fields > div > input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+}
+
+
+
+/* ===========================reg-button========================== */
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 00;
+    cursor: pointer;
+}
+
+/* ======================reg-agreement-form======================== */
+
+.auth-agreement-form {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-agreement-form:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+}
+
+/* ========================auth-error-message======================= */
+
+.auth-error-message {
+    font-size: 14px;
+    color: rgb(240, 77, 77);
+    animation-name: auth-error-message-appear;
+    animation-duration: 1s;
+}
+
+@keyframes auth-error-message-appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.password-forget-button {
+    color:#6A5ACD;
+    text-decoration: underline;
+}
+
+.div-line {
+    margin-top: 7px;
+}
+
+.div-line > text {
+    cursor: pointer;
+}
+

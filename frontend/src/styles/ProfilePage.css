@@ -1,0 +1,6 @@
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: space-between;
+}
