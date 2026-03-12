@@ -1,11 +1,14 @@
 import { Button } from '@mui/material';
-import '../../styles/RegForm.css'
 import { useState } from 'react';
-import { FieldValues, useForm } from "react-hook-form"; 
+import { FieldValues, useForm } from "react-hook-form";
+
 import { registerService } from '../../services/authorizationService';
 import { registerData } from '../../types/authorizationTypes';
 import { userSlice } from '../../slices/userSlice';
 import { useAppDispatch } from '../../hooks/redux_hooks';
+
+import '../../styles/RegForm.css'
+
 
 type RegFormProps = {
     setMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,28 +32,40 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
 
     const handleSubmitEvent = async (data: FieldValues) => {
         await registerService(data as registerData)
-            .then(result => { 
-                dispatch(setUser(result.data.user)); 
-                dispatch(setIsLogin(true)); 
+            .then(result => {
+                dispatch(setUser(result.data.user));
+                dispatch(setIsLogin(true));
                 localStorage.setItem('token', result.data.token)
             })
-            .catch(err => { console.error(err); dispatch(setIsLogin(true)); });
+            .catch(err => {
+                console.error(err);
+                dispatch(setIsLogin(true));
+                dispatch(setUser({
+                    id: '110',
+                    firstname: data.firstname,
+                    lastname: data.lastname,
+                    email: data.email,
+                    phone: data.phone,
+                }));
+            });
     }
 
     return (
         <form className='reg-container' onSubmit={handleSubmit(handleSubmitEvent)}>
-            <h1>Создать аккаунт</h1>
-            <p>Заполните форму ниже, чтобы зарегистрироваться</p>
-
+            <div className='header'>
+                <div data-title='true'>Создать аккаунт</div>
+                <div >Заполните форму ниже, чтобы зарегистрироваться</div>
+            </div>
+            
             <div className='reg-form-fields'>
-                <div>
-                    <p>Имя</p>
+                <div className='form-item'>
+                    <div className='field-name'>Имя</div>
                     {errors.firstname && (
                         <span className='reg-error-message'>{errors.firstname.message as string}</span>
                     )}
-                    <input 
+                    <input
                         id='firstname'
-                        placeholder='Иван' 
+                        placeholder='Иван'
                         {...register('firstname', {
                             required: {
                                 value: true,
@@ -60,14 +75,14 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
                     />
                 </div>
 
-                <div>
-                    <p>Фамилия</p>
+                <div className='form-item'>
+                    <div className='field-name'>Фамилия</div>
                     {errors.lastname && (
                         <span className='reg-error-message'>{errors.lastname.message as string}</span>
                     )}
-                    <input 
-                        id='lastname' 
-                        placeholder='Иванов' 
+                    <input
+                        id='lastname'
+                        placeholder='Иванов'
                         {...register('lastname', {
                             required: {
                                 value: true,
@@ -77,33 +92,33 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
                     />
                 </div>
 
-                <div>
-                    <p>Адрес электронной почты</p>
+                <div className='form-item'>
+                    <div className='field-name'>Адрес электронной почты</div>
                     {errors.email && (
                         <span className='reg-error-message'>{errors.email.message as string}</span>
                     )}
-                    <input 
-                        id='email' 
-                        type="email" 
-                        placeholder='IvanIvanov@mail.ru' 
+                    <input
+                        id='email'
+                        type="email"
+                        placeholder='IvanIvanov@mail.ru'
                         {...register('email', {
                             required: {
                                 value: true,
                                 message: 'Введите адрес электронной почты'
                             }
                         })}
-                    /> 
+                    />
                 </div>
 
-                <div>
-                    <p>Номер телефона</p>
+                <div className='form-item'>
+                    <div className='field-name'>Номер телефона</div>
                     {errors.phone && (
                         <span className='reg-error-message'>{errors.phone.message as string}</span>
                     )}
-                    <input 
-                        id='phone' 
+                    <input
+                        id='phone'
                         type='tel'
-                        placeholder='+7 (123) 456-78-90' 
+                        placeholder='+7 (123) 456-78-90'
                         {...register('phone', {
                             required: {
                                 value: true,
@@ -113,15 +128,15 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
                     />
                 </div>
 
-                <div>
-                    <p>Пароль</p>
+                <div className='form-item'>
+                    <div className='field-name'>Пароль</div>
                     {errors.password && (
                         <span className='reg-error-message'>{errors.password.message as string}</span>
                     )}
-                    <input 
-                        id='password' 
-                        type='password' 
-                        placeholder='Пароль' 
+                    <input
+                        id='password'
+                        type='password'
+                        placeholder='Пароль'
                         {...register('password', {
                             minLength: {
                                 value: 8,
@@ -131,15 +146,15 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
                     />
                 </div>
                 
-                <div>
-                    <p>Подтверждение пароля</p>
+                <div className='form-item'>
+                    <div className='field-name'>Подтверждение пароля</div>
                     {errors.confirm_password && (
                         <span className='reg-error-message'>{errors.confirm_password.message as string}</span>
                     )}
-                    <input 
-                        id='confirm-password' 
-                        type='password' 
-                        placeholder='Повторите пароль' 
+                    <input
+                        id='confirm-password'
+                        type='password'
+                        placeholder='Повторите пароль'
                         {...register('confirm_password', {
                             validate: (value) =>
                                 value === (document.getElementById('password') as HTMLInputElement)?.value ||
@@ -152,7 +167,7 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
             <div>
                 <input id='agreement' type='checkbox' onChange={checkboxChange} />
                 <label htmlFor='agreement'>
-                    Я согласен с <span className='conditions-button'>условиями пользования</span> 
+                    Я согласен с <span className='conditions-button'>условиями пользования</span>
                     <span> и </span>
                     <span className='conditions-button'>политикой конфидециальности</span>
                 </label>

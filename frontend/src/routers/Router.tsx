@@ -1,20 +1,22 @@
-import { Route, Routes } from 'react-router-dom'
-import AuthPage from '../pages/AuthPage';
-import ProfilePage from '../pages/ProfilePage';
-import RetranslatePage from '../pages/RetranslatePage';
-import AdminPanelPage from '../pages/AdminPanelPage';
-import RoleChoicePage from '../pages/RoleChoicePage';
+import { Navigate, Route, Routes } from 'react-router-dom'
+
+import AuthPage from '../conatiners/pages/AuthPage';
+import ProfilePage from '../conatiners/pages/Profile/ProfilePage';
+import AdminPanelPage from '../conatiners/pages/AdminPanelPage';
+import RoleChoicePage from '../conatiners/pages/RoleChoicePage';
+import PATHS from "../constants/paths";
+
 
 const Router = () => {
-    return (
-        <Routes>
-            <Route path="/" element={<RetranslatePage to='/login' />} />
-            <Route path="/login" element={<AuthPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/admin" element={<AdminPanelPage />} />
-            <Route path="/roles" element={<RoleChoicePage />} />
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to={PATHS.LOGIN} replace />} />
+      <Route path={PATHS.LOGIN} element={<AuthPage />} />
+      <Route path={PATHS.PROFILE} element={<ProfilePage />} />
+      <Route path={PATHS.ADMIN} element={<AdminPanelPage />} />
+      <Route path={PATHS.ROLES} element={<RoleChoicePage />} />
+    </Routes>
+  );
 }
 
 export default Router;

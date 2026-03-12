@@ -1,4 +1,4 @@
-import { Modal } from "@mui/material";
+import {Button, Modal} from "@mui/material";
 import { SetStateAction, useState } from "react";
 import '../styles/DoubleAuthenticationModal.css'
 
@@ -6,9 +6,10 @@ type AuthenticationModalProps = {
     modalOpen: boolean;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     email: string;
+    checkAuthCode: () => void;
 }
 
-const DoubleAuthenticationModal: React.FC<AuthenticationModalProps> = ({ modalOpen, setModalOpen, email }) => {
+const DoubleAuthenticationModal: React.FC<AuthenticationModalProps> = ({ modalOpen, setModalOpen, email, checkAuthCode }) => {
 
     const [value_1, setValue_1] = useState<string>('')
     const [value_2, setValue_2] = useState<string>('')
@@ -18,7 +19,7 @@ const DoubleAuthenticationModal: React.FC<AuthenticationModalProps> = ({ modalOp
     const [value_6, setValue_6] = useState<string>('')
 
     const setters: React.Dispatch<SetStateAction<string>>[] = [
-        setValue_1, setValue_2, setValue_3, 
+        setValue_1, setValue_2, setValue_3,
         setValue_4, setValue_5, setValue_6
     ]
 
@@ -65,7 +66,17 @@ const DoubleAuthenticationModal: React.FC<AuthenticationModalProps> = ({ modalOp
                     <input id='5' value={value_5} onChange={handleInputChange}/>
                     <input id='6' value={value_6} onChange={handleInputChange}/>
                 </div>
-                <p>Повторить отправку через...</p>
+                <div className='auth-agreement-form'>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        color='success'
+                        className='auth-button'
+                        onClick={checkAuthCode}
+                    >
+                        Ввести
+                    </Button>
+                </div>
             </div>
         </Modal>
     );

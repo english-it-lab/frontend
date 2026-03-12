@@ -16,7 +16,7 @@ const ProfileBar = () => {
 
 
     const { setUser, setIsLogin } = userSlice.actions
-    const initialUser = useAppSelector(state => state.userReducer.user)
+    const initialUser = useAppSelector(state => state.userReducer.user) || {} as IUser;
     const dispatch = useAppDispatch()
 
     const [user, setUser1] = useState<IUser>({
@@ -62,12 +62,6 @@ const ProfileBar = () => {
             <h1>Добро пожаловать, {initialUser.firstname}!</h1>
 
             <div className='profile-info-container'>
-                <div>
-                    <p>UserID</p>
-                    
-                    <p>{initialUser.id}</p>
-                </div>
-                
                 <div>
                     <p>Имя</p>
                     <div>

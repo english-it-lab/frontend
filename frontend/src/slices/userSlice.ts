@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../interfaces/userInterface";
 
 interface userStorageInterface {
-    user: IUser;
+    user: IUser | null;
     isLogin: boolean;
 }
 
 const initialState: userStorageInterface = {
-    user: {} as IUser,
+    user: null,
     isLogin: false
 }
 

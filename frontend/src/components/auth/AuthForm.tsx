@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import '../../styles/AuthForm.css'
-import { FieldValues, useForm } from "react-hook-form"; 
+import { FieldValues, useForm } from "react-hook-form";
 import { authService } from '../../services/authorizationService';
 import { authData } from '../../types/authorizationTypes';
 import { useState } from 'react';
@@ -24,17 +24,29 @@ const AuthForm: React.FC<AuthFormProps> = ({ setMode }) => {
         setMode(true)
     }
 
+    const checkAuthCode = async () => {
+      dispatch(setIsLogin(true));
+    }
+    
     const handleSubmitEvent = async (data: FieldValues) => {
         setEmail(data.email)
         setModalOpen(true)
-        console.log(data)
         await authService(data as authData)
-            .then(result => { 
-                dispatch(setUser(result.data.user)); 
-                dispatch(setIsLogin(true)); 
+            .then(result => {
+                dispatch(setUser(result.data.user));
+                dispatch(setIsLogin(true));
                 localStorage.setItem('token', result.data.token)
             })
-            .catch(err => { console.error(err); dispatch(setIsLogin(true)); });
+            .catch(err => {
+              console.error(err);
+              dispatch(setUser({
+                id: '110',
+                firstname: 'firstname',
+                lastname: 'lastname',
+                email: 'email',
+                phone: 'phone',
+              }));
+            });
     }
 
     return (
@@ -48,17 +60,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ setMode }) => {
                     {errors.email && (
                         <span className='auth-error-message'>{errors.email.message as string}</span>
                     )}
-                    <input 
+                    <input
                         id='email'
-                        type="email" 
-                        placeholder='IvanIvanov@mail.ru' 
+                        type="email"
+                        placeholder='IvanIvanov@mail.ru'
                         {...register('email', {
                             required: {
                                 value: true,
                                 message: 'Введите адрес электронной почты'
                             }
                         })}
-                    /> 
+                    />
                 </div>
 
                 <div>
@@ -66,10 +78,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ setMode }) => {
                     {errors.password && (
                         <span className='auth-error-message'>{errors.password.message as string}</span>
                     )}
-                    <input 
+                    <input
                         id='password'
-                        type='password' 
-                        placeholder='Пароль' 
+                        type='password'
+                        placeholder='Пароль'
                         {...register('password', {
                             required: {
                                 value: true,
@@ -96,6 +108,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setMode }) => {
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
                 email={email}
+                checkAuthCode={checkAuthCode}
             />
         </form>
     );
