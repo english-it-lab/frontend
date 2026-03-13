@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import AuthForm from "../../components/auth/AuthForm";
-import RegForm from "../../components/auth/RegForm";
-import { useAppSelector } from "../../hooks/redux_hooks";
-import PATHS from "../../constants/paths";
+import AuthForm from "components/auth/AuthForm";
+import RegForm from "components/auth/RegForm";
+import { useAppSelector } from "hooks/redux_hooks";
+import PATHS from "constants/paths";
 
-import '../../styles/AuthPage.css'
+import 'styles/AuthPage.css'
 
 
 const AuthPage = () => {

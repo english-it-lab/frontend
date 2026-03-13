@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import ProfileBar from "../../../components/profile/ProfileBar";
+import ProfileBar from "components/profile/ProfileBar";
 
 import styles from './ProfilePage.module.css';
 

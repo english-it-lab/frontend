@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Button, IconButton } from '@mui/material';
-import '../../styles/ProfileBar.css'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { useState } from 'react';
-import { IUser } from '../../interfaces/userInterface';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux_hooks'
-import { userSlice } from '../../slices/userSlice';
-import { logout } from '../../services/authorizationService';
+
+import { IUser } from 'interfaces/userInterface';
+import { useAppSelector, useAppDispatch } from 'hooks/redux_hooks'
+import { userSlice } from 'slices/userSlice';
+import { logout } from 'services/authorizationService';
+
+import 'styles/ProfileBar.css'
+
 
 const ProfileBar = () => {
     const [editFirstname, setEditFirstname] = useState<boolean>(false);

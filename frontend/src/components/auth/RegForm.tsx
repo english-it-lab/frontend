@@ -2,12 +2,12 @@ import { Button } from '@mui/material';
 import { useState } from 'react';
 import { FieldValues, useForm } from "react-hook-form";
 
-import { registerService } from '../../services/authorizationService';
-import { registerData } from '../../types/authorizationTypes';
-import { userSlice } from '../../slices/userSlice';
-import { useAppDispatch } from '../../hooks/redux_hooks';
+import { registerService } from 'services/authorizationService';
+import { registerData } from 'types/authorizationTypes';
+import { userSlice } from 'slices/userSlice';
+import { useAppDispatch } from 'hooks/redux_hooks';
 
-import '../../styles/RegForm.css'
+import 'styles/RegForm.css'
 
 
 type RegFormProps = {

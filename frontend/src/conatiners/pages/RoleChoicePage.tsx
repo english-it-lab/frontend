@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import PATHS from "../../constants/paths";
+import PATHS from "constants/paths";
 
-import '../../styles/RoleChoicePage.css'
+import 'styles/RoleChoicePage.css'
 
 
 const RoleChoicePage = () => {

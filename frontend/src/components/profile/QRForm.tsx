@@ -1,8 +1,10 @@
 import { Alert, Button, Snackbar } from '@mui/material';
-import '../../styles/QRForm.css'
 import { QRCodeSVG } from 'qrcode.react';
 import { useState } from 'react';
 import html2canvas from 'html2canvas';
+
+import 'styles/QRForm.css'
+
 
 const QRForm = () => {
     const [codeData, setCodeData] = useState<string>('');
@@ -72,7 +74,7 @@ const QRForm = () => {
                     </div>
                 </div>
 
-                {isGenerated && 
+                {isGenerated &&
                 <div className='qr-code'>
                     <div id='qr-code' onClick={downloadQRCode}>
                         <QRCodeSVG value={codeData} size={180}/>

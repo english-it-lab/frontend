@@ -1,12 +1,15 @@
-import { Button } from '@mui/material';
-import '../../styles/AuthForm.css'
-import { FieldValues, useForm } from "react-hook-form";
-import { authService } from '../../services/authorizationService';
-import { authData } from '../../types/authorizationTypes';
 import { useState } from 'react';
+import { Button } from '@mui/material';
+import { FieldValues, useForm } from "react-hook-form";
+
+import { authService } from 'services/authorizationService';
+import { authData } from 'types/authorizationTypes';
 import DoubleAuthenticationModal from '../DoubleAuthenticationModal';
-import { userSlice } from '../../slices/userSlice';
-import { useAppDispatch } from '../../hooks/redux_hooks';
+import { userSlice } from 'slices/userSlice';
+import { useAppDispatch } from 'hooks/redux_hooks';
+
+import 'styles/AuthForm.css'
+
 
 type AuthFormProps = {
     setMode: React.Dispatch<React.SetStateAction<boolean>>;

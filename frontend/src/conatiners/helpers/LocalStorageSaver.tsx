@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { checkAuth, getToken } from "../../services/authorizationService";
-import { userSlice } from "../../slices/userSlice";
-import { useAppDispatch } from "../../hooks/redux_hooks";
+import { checkAuth, getToken } from "services/authorizationService";
+import { userSlice } from "slices/userSlice";
+import { useAppDispatch } from "hooks/redux_hooks";
 
 
 const LocalStorageSaver = () => {

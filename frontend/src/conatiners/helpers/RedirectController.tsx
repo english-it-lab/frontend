@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { RootState } from "../../store/store";
-import PATHS from "../../constants/paths";
+import { RootState } from "store/store";
+import PATHS from "constants/paths";
 
 
 const RedirectController = () => {
