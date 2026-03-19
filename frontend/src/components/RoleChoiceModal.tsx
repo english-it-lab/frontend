@@ -4,6 +4,8 @@ import { useAppSelector, useAppDispatch } from 'hooks/redux_hooks'
 import { IUser } from "interfaces/userInterface";
 import { userSlice } from 'slices/userSlice';
 
+import 'styles/RoleChoicePage.css'
+
 type RoleChoiceProps = {
     editRole: boolean;
     setEditRole: React.Dispatch<React.SetStateAction<boolean>>;
