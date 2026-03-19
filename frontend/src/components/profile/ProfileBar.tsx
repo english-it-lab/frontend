@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, IconButton } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Button, IconButton, Modal } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
@@ -9,6 +9,7 @@ import { userSlice } from 'slices/userSlice';
 import { logout } from 'services/authorizationService';
 
 import 'styles/ProfileBar.css'
+import RoleChoiceModal from 'components/RoleChoiceModal';
 
 
 const ProfileBar = () => {
@@ -16,6 +17,7 @@ const ProfileBar = () => {
     const [editLastname, setEditLastname] = useState<boolean>(false);
     const [editPhone, setEditPhone] = useState<boolean>(false);
     const [editEmail, setEditEmail] = useState<boolean>(false);
+    const [editRole, setEditRole] = useState<boolean>(false);
 
 
     const { setUser, setIsLogin } = userSlice.actions
@@ -27,8 +29,13 @@ const ProfileBar = () => {
         lastname: initialUser.lastname,
         phone: initialUser.phone,
         email: initialUser.email,
-        id: initialUser.id
+        id: initialUser.id,
+        currentRole: initialUser.currentRole,
     } as IUser)
+
+    useEffect(() => {
+        setUser1(initialUser)
+    }, [initialUser])
 
     const handleFirstnameChange = (event: React.ChangeEvent) => {
         event.preventDefault()
@@ -104,11 +111,25 @@ const ProfileBar = () => {
                         </IconButton>
                     </div>
                 </div>
+
+                <div>
+                    <p>Текущая роль</p>
+                    <div>
+                        <input disabled value={user.currentRole}/>
+                        <IconButton size='small' onClick={() => setEditRole(!editRole)}>
+                            {editRole ? <CheckCircleOutlineOutlinedIcon /> : <EditOutlinedIcon />}
+                        </IconButton>
+                    </div>
+                </div>
+
+
             </div>
 
             <div className='logout-button-container'>
                 <Button color='error' variant='contained' onClick={handleLogout}>Выйти</Button>
             </div>
+
+            <RoleChoiceModal editRole={editRole} setEditRole={setEditRole} />
 
         </div>
     );

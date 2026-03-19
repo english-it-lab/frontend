@@ -48,6 +48,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ setMode }) => {
                 lastname: 'lastname',
                 email: 'email',
                 phone: 'phone',
+                currentRole: 'Участник',
               }));
             });
     }

@@ -1,9 +1,9 @@
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
 
-import Layout from "./conatiners/Layout";
+import Layout from "./containers/Layout";
 import Header from "./components/Header";
-import LocalStorageSaver from "./conatiners/helpers/LocalStorageSaver";
+import LocalStorageSaver from "./containers/helpers/LocalStorageSaver";
 import { setupStore } from "./store/store";
 
 

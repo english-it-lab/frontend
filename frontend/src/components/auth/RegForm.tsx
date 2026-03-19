@@ -46,6 +46,7 @@ const RegForm: React.FC<RegFormProps> = ({ setMode }) => {
                     lastname: data.lastname,
                     email: data.email,
                     phone: data.phone,
+                    currentRole: data.currentRole,
                 }));
             });
     }

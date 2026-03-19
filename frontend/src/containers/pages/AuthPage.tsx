@@ -15,7 +15,7 @@ const AuthPage = () => {
     const [mode, setMode] = useState<boolean>(true);
     
     useEffect(() => {
-        isLogin && navigate(PATHS.ROLES);
+        isLogin && navigate(PATHS.PROFILE);
     }, [isLogin]);
     
     return (
