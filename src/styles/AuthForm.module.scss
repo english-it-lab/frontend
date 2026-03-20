@@ -1,0 +1,133 @@
+@keyframes authAppear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes authErrorMessageAppear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.authContainer {
+  animation: authAppear 0.9s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  padding: 45px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  font-size: medium;
+
+  > input {
+    margin-bottom: 10px;
+  }
+
+  > p {
+    margin-bottom: 30px;
+    color: #666;
+  }
+
+  > h1 {
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 32px;
+  }
+}
+
+.authChangeModeButton {
+  color: #6a11cb;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.authFormFields {
+  width: 100%;
+  margin-right: 28px;
+
+  > div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  > div > p {
+    display: block;
+    color: #333;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  > div > input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+
+  > div > input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+  }
+}
+
+.authButton {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.authAgreementForm {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+  }
+}
+
+.authErrorMessage {
+  animation: authErrorMessageAppear 1s;
+  color: rgb(240, 77, 77);
+  font-size: 14px;
+}
+
+.passwordForgetButton {
+  color: #6a5acd;
+  text-decoration: underline;
+}
+
+.dividerLine {
+  margin-top: 7px;
+}

@@ -1,0 +1,56 @@
+.profileBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  max-width: 1200px;
+  height: auto;
+  margin-bottom: 20px;
+  padding: 45px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  font-size: medium;
+}
+
+.profileInfoContainer {
+  width: 100%;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #6a11cb;
+    border-top-color: black;
+    border-right-color: black;
+    border-left-color: black;
+  }
+
+  > div > div {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+  }
+
+  > div > div > input {
+    width: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+
+  > div > div > input:focus {
+    border-color: #6a11cb;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 17, 203, 0.2);
+  }
+}
+
+.logoutButtonContainer {
+  margin-top: 20px;
+}
