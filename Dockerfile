@@ -17,7 +17,9 @@ RUN npm run build:prod
 
 FROM nginx:1.27-alpine AS runner
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker-runtime-config.sh /docker-entrypoint.d/40-runtime-config.sh
 COPY --from=builder /app/dist /usr/share/nginx/html
+RUN chmod +x /docker-entrypoint.d/40-runtime-config.sh
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
