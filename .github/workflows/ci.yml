@@ -97,4 +97,3 @@ jobs:
           registry-url: ${{ vars.REGISTRY_URL }}
           registry-user: ${{ secrets.REGISTRY_USER }}
           registry-token: ${{ secrets.REGISTRY_TOKEN }}
-
