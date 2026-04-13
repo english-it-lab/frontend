@@ -1,0 +1,23 @@
+.toolbar {
+  justify-content: space-between;
+  color: white;
+}
+
+.logo {
+  font-weight: bold;
+  margin-right: 32px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.navButton {
+
+  &[data-active="true"] {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+  }
+}

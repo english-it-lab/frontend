@@ -14,7 +14,7 @@ const AuthPage = () => {
 
   useEffect(() => {
     if (isLogin) {
-      navigate(PATHS.PROFILE);
+      navigate(PATHS.EVENTS);
     }
   }, [isLogin, navigate]);
 

@@ -3,6 +3,7 @@ const PATHS = {
   PROFILE: "/profile",
   ADMIN: "/admin",
   ROLES: "/roles",
+  EVENTS: "/events"
 };
 
 export default PATHS;
