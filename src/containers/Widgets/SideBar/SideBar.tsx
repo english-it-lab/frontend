@@ -1,7 +1,7 @@
 import { type ChangeEvent, type ReactNode } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 
-import UserCard from '@/containers/widgets/UserCard/UserCard';
+import UserCard from '@/containers/Widgets/UserCard/UserCard';
 import { useAppSelector } from '@/hooks/redux_hooks';
 
 import styles from './SideBar.module.scss';

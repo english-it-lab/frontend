@@ -1,7 +1,8 @@
 import { AppBar, Toolbar, Button, Box } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import UserCard from "@/containers/widgets/UserCard/UserCard.tsx";
+import { adminPageEnabled } from "@/config/app-config";
+import UserCard from "@/containers/Widgets/UserCard/UserCard.tsx";
 import { useAppSelector } from "@/hooks/redux_hooks.ts";
 
 import styles from './HeaderBar.module.scss';
@@ -34,6 +35,16 @@ const HeaderBar = () => {
 					>
 						Мои заявки
 					</Button>
+					{adminPageEnabled && (
+						<Button
+							color="inherit"
+							data-active={location.pathname.startsWith('/admin')}
+							className={styles.navButton}
+							onClick={() => navigate('/admin/sections')}
+						>
+							Админка
+						</Button>
+					)}
 				</Box>
 				<UserCard currentUser={currentUser} />
 			</Toolbar>

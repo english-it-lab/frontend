@@ -1,5 +1,5 @@
 import RedirectController from "@/containers/helpers/RedirectController";
-import HeaderBar from "@/containers/widgets/HeaderBar/HeaderBar.tsx";
+import HeaderBar from "@/containers/Widgets/HeaderBar/HeaderBar.tsx";
 import Router from "@/routers/Router";
 
 import styles from "./Layout.module.scss";

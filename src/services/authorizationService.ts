@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import instance from "@/api/axios.api";
 import type {
   AuthentificationResponseDto,
@@ -21,7 +23,7 @@ interface authParams {
 }
 
 export const getToken = async (): Promise<void> => {
-  instance.get("/csrf_token").catch((err) => console.error(err));
+  return Promise.resolve();
 };
 
 export const registerService = async (
@@ -58,19 +60,37 @@ export const authService = async (
 };
 
 export const logout = async (): Promise<void> => {
-  instance.post("/auth/logout").catch((err) => console.error(err));
+  await instance.post("/auth/logout");
 };
 
 export const checkAuth = async (): Promise<
   AxiosResponse<AuthentificationResponseDto>
 > => {
-  return instance.post(
-    "/auth/refresh_tokens",
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    },
-  );
+  return instance.post("/auth/refresh_tokens", {});
+};
+
+export const getAuthErrorMessage = (error: unknown): string => {
+  if (!axios.isAxiosError(error)) {
+    return "Не удалось выполнить запрос. Попробуйте позже.";
+  }
+
+  const detail = error.response?.data?.detail;
+
+  if (typeof detail === "string") {
+    return detail;
+  }
+
+  if (Array.isArray(detail) && detail.length > 0) {
+    return "Проверьте корректность заполнения формы.";
+  }
+
+  if (error.response?.status === 401) {
+    return "Неверный email или пароль.";
+  }
+
+  if (error.response?.status === 409) {
+    return "Пользователь с такими данными уже существует.";
+  }
+
+  return "Сервер авторизации недоступен. Попробуйте позже.";
 };

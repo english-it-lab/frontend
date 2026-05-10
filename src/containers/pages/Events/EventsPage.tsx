@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 import { mockEvents } from "@/constants/mockData.ts";
-import EventsList from "@/containers/widgets/EventsList/EventsList.tsx";
+import EventsList from "@/containers/Widgets/EventsList/EventsList.tsx";
 
 import styles from './EventsPage.module.scss';
 

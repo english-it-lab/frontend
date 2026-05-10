@@ -1,5 +1,4 @@
 import { Card, CardContent, Typography, Chip, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 import type { IEvent } from '@/interfaces/eventInterface';
 
@@ -17,8 +16,6 @@ const eventTypeMap = {
 }
 
 const EventCard = ({ event }: EventCardProps) => {
-	const navigate = useNavigate();
-	
 	const handleCardClick = () => {
 		// navigate(`/events/${event.id}`);
 	};
