@@ -1,232 +1,74 @@
-import { DataGrid } from "@mui/x-data-grid";
+import {
+  Box,
+  List,
+  ListItemButton,
+  ListItemText,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import type { GridColDef } from "@mui/x-data-grid";
+import PATHS from "@/constants/paths";
+import AdminSectionsPage from "@/containers/pages/Admin/pages/Sections/AdminSectionsPage";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const adminMenuItems = [
   {
-    field: "id",
-    headerName: "ID",
-    width: 90,
-  },
-  {
-    field: "firstname",
-    headerName: "Имя",
-    width: 150,
-  },
-  {
-    field: "lastname",
-    headerName: "Фамилия",
-    width: 150,
-  },
-  {
-    field: "phone",
-    headerName: "Номер телефона",
-    type: "number",
-    sortable: false,
-    width: 160,
-  },
-  {
-    field: "email",
-    headerName: "Адрес электронной почты",
-    sortable: false,
-    width: 200,
-  },
-  {
-    field: "regDate",
-    headerName: "Дата регистрации",
-    width: 150,
-  },
-];
-
-const rows = [
-  {
-    id: 1,
-    lastname: "Snow",
-    firstname: "Jon",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 2,
-    lastname: "Lannister",
-    firstname: "Cersei",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 3,
-    lastname: "Lannister",
-    firstname: "Jaime",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 4,
-    lastname: "Stark",
-    firstname: "Arya",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 5,
-    lastname: "Targaryen",
-    firstname: "Daenerys",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 6,
-    lastname: "Melisandre",
-    firstname: "Daenerys",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 7,
-    lastname: "Clifford",
-    firstname: "Ferrara",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 8,
-    lastname: "Frances",
-    firstname: "Rossini",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 9,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 10,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 11,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 12,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 13,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 14,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 15,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 16,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 17,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 18,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 19,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 20,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
-  },
-  {
-    id: 21,
-    lastname: "Roxie",
-    firstname: "Harvey",
-    phone: 1234567890,
-    email: "89372650223@mail.ru",
-    regDate: "01.01.1999",
+    label: "Секции",
+    path: PATHS.ADMIN_SECTIONS,
   },
 ];
 
 const AdminPanelPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
-          },
-        }}
-        pageSizeOptions={[10]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
-    </div>
+    <Box sx={{ p: 3 }}>
+      <Stack
+        alignItems="stretch"
+        direction={{ xs: "column", md: "row" }}
+        spacing={3}
+      >
+        <Paper
+          component="aside"
+          sx={{
+            flexShrink: 0,
+            p: 2,
+            width: { xs: "100%", md: 260 },
+          }}
+        >
+          <Typography variant="h6" component="h1" sx={{ mb: 2 }}>
+            Админка
+          </Typography>
+          <List disablePadding>
+            {adminMenuItems.map((item) => (
+              <ListItemButton
+                key={item.path}
+                selected={location.pathname.startsWith(item.path)}
+                onClick={() => navigate(item.path)}
+              >
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            ))}
+          </List>
+        </Paper>
+
+        <Box component="main" sx={{ minWidth: 0, flexGrow: 1 }}>
+          <Routes>
+            <Route
+              index
+              element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}
+            />
+            <Route path="sections" element={<AdminSectionsPage />} />
+            <Route
+              path="*"
+              element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}
+            />
+          </Routes>
+        </Box>
+      </Stack>
+    </Box>
   );
 };
 

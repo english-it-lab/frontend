@@ -1,7 +1,7 @@
 import { type ChangeEvent, useState } from "react";
 import { Grid, Pagination } from "@mui/material";
 
-import EventCard from "@/containers/widgets/EventCard/EventCard.tsx";
+import EventCard from "@/containers/Widgets/EventCard/EventCard.tsx";
 import type { IEvent } from "@/interfaces/eventInterface.ts";
 
 import styles from './EventList.module.scss';

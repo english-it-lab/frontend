@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+import { adminPageEnabled } from "@/config/app-config";
 import PATHS from "@/constants/paths";
 
 const AdminPanelPage = lazy(() => import("@/containers/pages/AdminPanelPage"));
@@ -18,7 +19,16 @@ const Router = () => {
         <Route path={PATHS.LOGIN} element={<AuthPage />} />
         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
         <Route path={PATHS.EVENTS} element={<EventsPage />} />
-        <Route path={PATHS.ADMIN} element={<AdminPanelPage />} />
+        <Route
+          path={`${PATHS.ADMIN}/*`}
+          element={
+            adminPageEnabled ? (
+              <AdminPanelPage />
+            ) : (
+              <Navigate to={PATHS.EVENTS} replace />
+            )
+          }
+        />
       </Routes>
     </Suspense>
   );

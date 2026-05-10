@@ -3,14 +3,14 @@ import type { Dispatch, SetStateAction } from "react";
 import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-import DoubleAuthenticationModal from "@/components/DoubleAuthenticationModal";
 import { useAppDispatch } from "@/hooks/redux_hooks";
-import { authService } from "@/services/authorizationService";
+import {
+  authService,
+  getAuthErrorMessage,
+} from "@/services/authorizationService";
 import { userSlice } from "@/slices/userSlice";
 import styles from "@/styles/AuthForm.module.scss";
 import type { authData } from "@/types/authorizationTypes";
-
-import type { FieldValues } from "react-hook-form";
 
 type AuthFormProps = {
   setMode: Dispatch<SetStateAction<boolean>>;
@@ -21,9 +21,9 @@ const AuthForm = ({ setMode }: AuthFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
+  } = useForm<authData>();
+  const [submitError, setSubmitError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const { setUser, setIsLogin } = userSlice.actions;
   const dispatch = useAppDispatch();
@@ -32,14 +32,11 @@ const AuthForm = ({ setMode }: AuthFormProps) => {
     setMode(true);
   };
 
-  const checkAuthCode = async () => {
-    dispatch(setIsLogin(true));
-  };
+  const handleSubmitEvent = async (data: authData) => {
+    setSubmitError("");
+    setIsSubmitting(true);
 
-  const handleSubmitEvent = async (data: FieldValues) => {
-    setEmail(data.email);
-    setModalOpen(true);
-    await authService(data as authData)
+    await authService(data)
       .then((result) => {
         dispatch(setUser(result.data.user));
         dispatch(setIsLogin(true));
@@ -47,16 +44,11 @@ const AuthForm = ({ setMode }: AuthFormProps) => {
       })
       .catch((err) => {
         console.error(err);
-        dispatch(
-          setUser({
-            id: "110",
-            firstname: "firstname",
-            lastname: "lastname",
-            email: "email",
-            phone: "phone",
-            currentRole: "Участник",
-          }),
-        );
+        localStorage.removeItem("token");
+        setSubmitError(getAuthErrorMessage(err));
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -111,13 +103,17 @@ const AuthForm = ({ setMode }: AuthFormProps) => {
       </div>
 
       <div className={styles.authAgreementForm}>
+        {submitError && (
+          <span className={styles.authErrorMessage}>{submitError}</span>
+        )}
         <Button
           type="submit"
+          disabled={isSubmitting}
           variant="contained"
           color="success"
           className={styles.authButton}
         >
-          Авторизоваться
+          {isSubmitting ? "Входим..." : "Авторизоваться"}
         </Button>
       </div>
 
@@ -131,12 +127,6 @@ const AuthForm = ({ setMode }: AuthFormProps) => {
           Зарегистрироваться
         </span>
       </div>
-      <DoubleAuthenticationModal
-        modalOpen={modalOpen}
-        setModalOpen={setModalOpen}
-        email={email}
-        checkAuthCode={checkAuthCode}
-      />
     </form>
   );
 };

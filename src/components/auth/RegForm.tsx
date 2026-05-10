@@ -4,25 +4,33 @@ import { Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 import { useAppDispatch } from "@/hooks/redux_hooks";
-import { registerService } from "@/services/authorizationService";
+import {
+  getAuthErrorMessage,
+  registerService,
+} from "@/services/authorizationService";
 import { userSlice } from "@/slices/userSlice";
 import styles from "@/styles/RegForm.module.scss";
 import type { registerData } from "@/types/authorizationTypes";
 
-import type { FieldValues } from "react-hook-form";
-
 type RegFormProps = {
   setMode: Dispatch<SetStateAction<boolean>>;
+};
+
+type RegisterFormData = registerData & {
+  confirm_password: string;
 };
 
 const RegForm = ({ setMode }: RegFormProps) => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<RegisterFormData>();
 
   const [checkboxState, setCheckBoxState] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const { setUser, setIsLogin } = userSlice.actions;
   const dispatch = useAppDispatch();
@@ -35,8 +43,11 @@ const RegForm = ({ setMode }: RegFormProps) => {
     setCheckBoxState(!checkboxState);
   };
 
-  const handleSubmitEvent = async (data: FieldValues) => {
-    await registerService(data as registerData)
+  const handleSubmitEvent = async (data: RegisterFormData) => {
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    await registerService(data)
       .then((result) => {
         dispatch(setUser(result.data.user));
         dispatch(setIsLogin(true));
@@ -44,17 +55,11 @@ const RegForm = ({ setMode }: RegFormProps) => {
       })
       .catch((err) => {
         console.error(err);
-        dispatch(setIsLogin(true));
-        dispatch(
-          setUser({
-            id: "110",
-            firstname: data.firstname,
-            lastname: data.lastname,
-            email: data.email,
-            phone: data.phone,
-            currentRole: data.currentRole,
-          }),
-        );
+        localStorage.removeItem("token");
+        setSubmitError(getAuthErrorMessage(err));
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
@@ -159,6 +164,10 @@ const RegForm = ({ setMode }: RegFormProps) => {
             type="password"
             placeholder="Пароль"
             {...register("password", {
+              required: {
+                value: true,
+                message: "Введите пароль",
+              },
               minLength: {
                 value: 8,
                 message: "Пароль должен быть не менее 8 символов",
@@ -179,10 +188,12 @@ const RegForm = ({ setMode }: RegFormProps) => {
             type="password"
             placeholder="Повторите пароль"
             {...register("confirm_password", {
+              required: {
+                value: true,
+                message: "Повторите пароль",
+              },
               validate: (value) =>
-                value ===
-                  (document.getElementById("password") as HTMLInputElement)
-                    ?.value || "Пароли не совпадают",
+                value === watch("password") || "Пароли не совпадают",
             })}
           />
         </div>
@@ -201,14 +212,17 @@ const RegForm = ({ setMode }: RegFormProps) => {
       </div>
 
       <div className={styles.regAgreementForm}>
+        {submitError && (
+          <span className={styles.regErrorMessage}>{submitError}</span>
+        )}
         <Button
           type="submit"
-          disabled={!checkboxState}
+          disabled={!checkboxState || isSubmitting}
           variant="contained"
           color="success"
           className={styles.regButton}
         >
-          Зарегистрироваться
+          {isSubmitting ? "Регистрируем..." : "Зарегистрироваться"}
         </Button>
       </div>
 

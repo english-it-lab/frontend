@@ -18,7 +18,7 @@ const ProfileBar = () => {
   const [editEmail, setEditEmail] = useState<boolean>(false);
   const [editRole, setEditRole] = useState<boolean>(false);
 
-  const { setUser, setIsLogin } = userSlice.actions;
+  const { clearSession } = userSlice.actions;
   const initialUser = useAppSelector((state) => state.userReducer.user);
   const dispatch = useAppDispatch();
 
@@ -61,8 +61,7 @@ const ProfileBar = () => {
     await logout()
       .then(() => {
         localStorage.removeItem("token");
-        dispatch(setUser({} as IUser));
-        dispatch(setIsLogin(false));
+        dispatch(clearSession());
       })
       .catch((err) => console.error(err));
   };

@@ -6,7 +6,6 @@ export type registerData = {
   email: string;
   phone: string;
   password: string;
-  token: string;
 };
 
 export type authData = {
