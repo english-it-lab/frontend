@@ -67,13 +67,16 @@ export const updateSectionThunk = createAsyncThunk<
   Section,
   { sectionId: number; data: SectionUpdateData },
   { rejectValue: string }
->("sections/updateSection", async ({ sectionId, data }, { rejectWithValue }) => {
-  try {
-    return await updateSection(sectionId, data);
-  } catch (error) {
-    return rejectWithValue(getSectionsErrorMessage(error));
-  }
-});
+>(
+  "sections/updateSection",
+  async ({ sectionId, data }, { rejectWithValue }) => {
+    try {
+      return await updateSection(sectionId, data);
+    } catch (error) {
+      return rejectWithValue(getSectionsErrorMessage(error));
+    }
+  },
+);
 
 export const deleteSectionThunk = createAsyncThunk<
   number,

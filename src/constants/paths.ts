@@ -4,7 +4,7 @@ const PATHS = {
   ADMIN: "/admin",
   ADMIN_SECTIONS: "/admin/sections",
   ROLES: "/roles",
-  EVENTS: "/events"
+  EVENTS: "/events",
 };
 
 export default PATHS;

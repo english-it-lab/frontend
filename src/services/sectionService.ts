@@ -17,8 +17,14 @@ export const createSection = async (data: SectionCreateData) => {
   return response.data;
 };
 
-export const updateSection = async (sectionId: number, data: SectionUpdateData) => {
-  const response = await instance.patch<Section>(`/sections/${sectionId}`, data);
+export const updateSection = async (
+  sectionId: number,
+  data: SectionUpdateData,
+) => {
+  const response = await instance.patch<Section>(
+    `/sections/${sectionId}`,
+    data,
+  );
 
   return response.data;
 };

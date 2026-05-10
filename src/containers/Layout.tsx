@@ -4,7 +4,6 @@ import Router from "@/routers/Router";
 
 import styles from "./Layout.module.scss";
 
-
 const Layout = () => {
   return (
     <div className={styles.contentWrapper}>

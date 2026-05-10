@@ -6,8 +6,10 @@ import PATHS from "@/constants/paths";
 
 const AdminPanelPage = lazy(() => import("@/containers/pages/AdminPanelPage"));
 const AuthPage = lazy(() => import("@/containers/pages/AuthPage"));
-const ProfilePage = lazy(() => import("@/containers/pages/Profile/ProfilePage"));
-const EventsPage = lazy(() => import("@/containers/pages/Events/EventsPage"),);
+const ProfilePage = lazy(
+  () => import("@/containers/pages/Profile/ProfilePage"),
+);
+const EventsPage = lazy(() => import("@/containers/pages/Events/EventsPage"));
 
 const RouterFallback = () => <div>Loading...</div>;
 

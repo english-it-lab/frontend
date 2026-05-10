@@ -18,7 +18,8 @@ export const apiBaseUrl =
   "http://localhost:8000/api/v1";
 
 const adminPageEnabledValue =
-  runtimeConfig?.VITE_ADMIN_PAGE_ENABLED ?? import.meta.env.VITE_ADMIN_PAGE_ENABLED;
+  runtimeConfig?.VITE_ADMIN_PAGE_ENABLED ??
+  import.meta.env.VITE_ADMIN_PAGE_ENABLED;
 
 export const adminPageEnabled = adminPageEnabledValue === "true";
 

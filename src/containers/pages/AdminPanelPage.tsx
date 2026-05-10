@@ -7,7 +7,13 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import PATHS from "@/constants/paths";
 import AdminSectionsPage from "@/containers/pages/Admin/pages/Sections/AdminSectionsPage";
