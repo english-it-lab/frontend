@@ -3,6 +3,8 @@ const PATHS = {
   PROFILE: "/profile",
   ADMIN: "/admin",
   ADMIN_SECTIONS: "/admin/sections",
+  ADMIN_JURIES: "/admin/juries",
+  ADMIN_UNIVERSITIES: "/admin/universities",
   ROLES: "/roles",
   EVENTS: "/events",
 };
