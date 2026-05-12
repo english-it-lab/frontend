@@ -1,11 +1,15 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
+import juriesReducer from "@/slices/juriesSlice";
 import sectionsReducer from "@/slices/sectionsSlice";
+import universitiesReducer from "@/slices/universitiesSlice";
 
 import userReducer from "../slices/userSlice";
 
 const rootReducer = combineReducers({
+  juriesReducer,
   sectionsReducer,
+  universitiesReducer,
   userReducer,
 });
 

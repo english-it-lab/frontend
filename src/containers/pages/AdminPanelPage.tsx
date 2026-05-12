@@ -16,12 +16,22 @@ import {
 } from "react-router-dom";
 
 import PATHS from "@/constants/paths";
+import AdminJuriesPage from "@/containers/pages/Admin/pages/Juries/AdminJuriesPage";
 import AdminSectionsPage from "@/containers/pages/Admin/pages/Sections/AdminSectionsPage";
+import AdminUniversitiesPage from "@/containers/pages/Admin/pages/Universities/AdminUniversitiesPage";
 
 const adminMenuItems = [
   {
     label: "Секции",
     path: PATHS.ADMIN_SECTIONS,
+  },
+  {
+    label: "Жюри",
+    path: PATHS.ADMIN_JURIES,
+  },
+  {
+    label: "Университеты",
+    path: PATHS.ADMIN_UNIVERSITIES,
   },
 ];
 
@@ -67,6 +77,8 @@ const AdminPanelPage = () => {
               element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}
             />
             <Route path="sections" element={<AdminSectionsPage />} />
+            <Route path="juries" element={<AdminJuriesPage />} />
+            <Route path="universities" element={<AdminUniversitiesPage />} />
             <Route
               path="*"
               element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}
