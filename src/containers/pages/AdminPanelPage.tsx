@@ -16,14 +16,24 @@ import {
 } from "react-router-dom";
 
 import PATHS from "@/constants/paths";
+import AdminGroupsPage from "@/containers/pages/Admin/pages/Groups/AdminGroupsPage";
 import AdminJuriesPage from "@/containers/pages/Admin/pages/Juries/AdminJuriesPage";
 import AdminSectionsPage from "@/containers/pages/Admin/pages/Sections/AdminSectionsPage";
+import AdminTopicsPage from "@/containers/pages/Admin/pages/Topics/AdminTopicsPage";
 import AdminUniversitiesPage from "@/containers/pages/Admin/pages/Universities/AdminUniversitiesPage";
 
 const adminMenuItems = [
   {
     label: "Секции",
     path: PATHS.ADMIN_SECTIONS,
+  },
+  {
+    label: "Топики",
+    path: PATHS.ADMIN_TOPICS,
+  },
+  {
+    label: "Группы",
+    path: PATHS.ADMIN_GROUPS,
   },
   {
     label: "Жюри",
@@ -77,6 +87,8 @@ const AdminPanelPage = () => {
               element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}
             />
             <Route path="sections" element={<AdminSectionsPage />} />
+            <Route path="topics" element={<AdminTopicsPage />} />
+            <Route path="groups" element={<AdminGroupsPage />} />
             <Route path="juries" element={<AdminJuriesPage />} />
             <Route path="universities" element={<AdminUniversitiesPage />} />
             <Route
