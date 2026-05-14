@@ -8,7 +8,11 @@ import {
   runGroupAction,
   updateGroup,
 } from "@/services/groupService";
-import type { Group, GroupCreateData, GroupUpdateData } from "@/types/groupTypes";
+import type {
+  Group,
+  GroupCreateData,
+  GroupUpdateData,
+} from "@/types/groupTypes";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -155,7 +159,9 @@ export const groupsSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteGroupThunk.fulfilled, (state, action) => {
-        state.items = state.items.filter((group) => group.id !== action.payload);
+        state.items = state.items.filter(
+          (group) => group.id !== action.payload,
+        );
       })
       .addCase(deleteGroupThunk.rejected, (state, action) => {
         state.error = action.payload ?? "Не удалось удалить группу.";

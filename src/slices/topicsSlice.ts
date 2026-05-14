@@ -7,7 +7,11 @@ import {
   getTopics,
   updateTopic,
 } from "@/services/topicService";
-import type { Topic, TopicCreateData, TopicUpdateData } from "@/types/topicTypes";
+import type {
+  Topic,
+  TopicCreateData,
+  TopicUpdateData,
+} from "@/types/topicTypes";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -142,7 +146,9 @@ export const topicsSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteTopicThunk.fulfilled, (state, action) => {
-        state.items = state.items.filter((topic) => topic.id !== action.payload);
+        state.items = state.items.filter(
+          (topic) => topic.id !== action.payload,
+        );
       })
       .addCase(deleteTopicThunk.rejected, (state, action) => {
         state.error = action.payload ?? "Не удалось удалить топик.";
