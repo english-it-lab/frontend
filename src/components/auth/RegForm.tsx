@@ -148,6 +148,8 @@ const RegForm = ({ setMode }: RegFormProps) => {
                 value: true,
                 message: "Введите номер телефона",
               },
+              validate: (value) =>
+                (value.charAt(0) == '8' && value.length==11)||(value.charAt(0) == '+' &&value.charAt(1) == '7'&& value.length==12)||"Неверный номер телефона",
             })}
           />
         </div>
@@ -203,10 +205,10 @@ const RegForm = ({ setMode }: RegFormProps) => {
         <input id="agreement" type="checkbox" onChange={checkboxChange} />
         <label htmlFor="agreement">
           Я согласен с{" "}
-          <span className={styles.conditionsButton}>условиями пользования</span>
+          <span className={styles.conditionsButton}><a href="/policy"> условиями пользования </a></span>
           <span> и </span>
           <span className={styles.conditionsButton}>
-            политикой конфидециальности
+            <a href="/terms">политикой конфидециальности</a>
           </span>
         </label>
       </div>

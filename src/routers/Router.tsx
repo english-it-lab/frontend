@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
+
 import { adminPageEnabled } from "@/config/app-config";
 import PATHS from "@/constants/paths";
 
@@ -10,6 +11,8 @@ const ProfilePage = lazy(
   () => import("@/containers/pages/Profile/ProfilePage"),
 );
 const EventsPage = lazy(() => import("@/containers/pages/Events/EventsPage"));
+const TermsOfUsagePage = lazy(() => import("@/containers/pages/Policy/TermsOfUsage"));
+const PolicyPage = lazy(() => import("@/containers/pages/Policy/PolicyPage"));
 
 const RouterFallback = () => <div>Loading...</div>;
 
@@ -17,7 +20,9 @@ const Router = () => {
   return (
     <Suspense fallback={<RouterFallback />}>
       <Routes>
-        <Route path="/" element={<Navigate to={PATHS.LOGIN} replace />} />
+        <Route path="/"  element={<Navigate to={PATHS.LOGIN} replace />} />
+        <Route path={PATHS.TERMS} element={<TermsOfUsagePage />} />
+        <Route path={PATHS.POLICY} element={<PolicyPage />} />
         <Route path={PATHS.LOGIN} element={<AuthPage />} />
         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
         <Route path={PATHS.EVENTS} element={<EventsPage />} />
