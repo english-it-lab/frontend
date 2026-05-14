@@ -11,6 +11,7 @@ const PATHS = {
   EVENTS: "/events",
   POLICY:"/policy",
   TERMS:"/terms"
+  EVENT: "/event/:eventId"
 };
 
 export default PATHS;

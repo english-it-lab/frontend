@@ -1,5 +1,9 @@
 import instance from "@/api/axios.api";
-import type { Group, GroupCreateData, GroupUpdateData } from "@/types/groupTypes";
+import type {
+  Group,
+  GroupCreateData,
+  GroupUpdateData,
+} from "@/types/groupTypes";
 
 type GroupApiResponse = {
   id: number;

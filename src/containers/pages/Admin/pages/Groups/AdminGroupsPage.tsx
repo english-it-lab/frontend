@@ -46,7 +46,8 @@ const groupStatusMap: Record<string, string> = {
   rejected: "Отклонена",
 };
 
-const normalizeGroupStatus = (status: string | null) => status?.toLowerCase() ?? null;
+const normalizeGroupStatus = (status: string | null) =>
+  status?.toLowerCase() ?? null;
 
 const AdminGroupsPage = () => {
   const dispatch = useAppDispatch();
@@ -63,13 +64,15 @@ const AdminGroupsPage = () => {
   const [selectedGroupId, setSelectedGroupId] = useState<number | null>(null);
 
   const selectedSection = form.sectionId
-    ? sections.find((section) => section.id === form.sectionId) ?? null
+    ? (sections.find((section) => section.id === form.sectionId) ?? null)
     : null;
   const selectedGroup =
     selectedGroupId === null
       ? null
-      : groups.find((group) => group.id === selectedGroupId) ?? null;
-  const selectedGroupStatus = normalizeGroupStatus(selectedGroup?.status ?? null);
+      : (groups.find((group) => group.id === selectedGroupId) ?? null);
+  const selectedGroupStatus = normalizeGroupStatus(
+    selectedGroup?.status ?? null,
+  );
 
   const loadGroups = () => {
     void dispatch(fetchGroups());
@@ -189,7 +192,7 @@ const AdminGroupsPage = () => {
       flex: 1,
       minWidth: 160,
       valueGetter: (value: string | null) =>
-        value ? groupStatusMap[value.toLowerCase()] ?? value : "Не задан",
+        value ? (groupStatusMap[value.toLowerCase()] ?? value) : "Не задан",
     },
     {
       field: "memberCount",
@@ -262,7 +265,9 @@ const AdminGroupsPage = () => {
                     sectionId: section?.id ?? null,
                   }))
                 }
-                renderInput={(params) => <TextField {...params} label="Секция" />}
+                renderInput={(params) => (
+                  <TextField {...params} label="Секция" />
+                )}
               />
             </Stack>
             <Stack direction="row" spacing={2}>

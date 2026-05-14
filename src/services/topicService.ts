@@ -1,5 +1,9 @@
 import instance from "@/api/axios.api";
-import type { Topic, TopicCreateData, TopicUpdateData } from "@/types/topicTypes";
+import type {
+  Topic,
+  TopicCreateData,
+  TopicUpdateData,
+} from "@/types/topicTypes";
 
 type TopicApiResponse = {
   id: number;
