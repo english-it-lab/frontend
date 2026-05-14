@@ -52,7 +52,7 @@ const AdminTopicsPage = () => {
   const [form, setForm] = useState<TopicFormState>(emptyForm);
 
   const selectedSection = form.sectionId
-    ? sections.find((section) => section.id === form.sectionId) ?? null
+    ? (sections.find((section) => section.id === form.sectionId) ?? null)
     : null;
 
   const loadTopics = () => {
@@ -215,7 +215,9 @@ const AdminTopicsPage = () => {
                     sectionId: section?.id ?? null,
                   }))
                 }
-                renderInput={(params) => <TextField {...params} label="Секция" />}
+                renderInput={(params) => (
+                  <TextField {...params} label="Секция" />
+                )}
               />
             </Stack>
             <Stack direction="row" spacing={2}>
