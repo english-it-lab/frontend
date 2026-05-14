@@ -1,78 +1,62 @@
-import { useState } from "react";
 import { Card, CardContent, Typography, Chip, Box } from "@mui/material";
 
-import EventApplicationDialog from "@/components/EventApplicationDialog/EventApplicationDialog";
+import { eventTypeMap } from "@/constants/events.ts";
 import type { IEvent } from "@/interfaces/eventInterface";
 
 import styles from "./EventCard.module.scss";
 
 type EventCardProps = {
   event: IEvent;
+  onClick: (eventId: string) => void;
 };
 
-const eventTypeMap = {
-  conference: "Конференция",
-  seminar: "Семинар",
-  roundTable: "Круглый стол",
-};
-
-const EventCard = ({ event }: EventCardProps) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+const EventCard = ({ event, onClick }: EventCardProps) => {
   return (
-    <>
-      <Card className={styles.eventCard} onClick={() => setIsDialogOpen(true)}>
-        <CardContent className={styles.cardContent}>
-          <Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                mb: 1,
-              }}
-            >
-              <Typography variant="h6" component="h3" sx={{ pr: 1 }}>
-                {event.name}
-              </Typography>
-              <Chip
-                label={eventTypeMap[event.type]}
-                size="small"
-                variant="outlined"
-              />
-            </Box>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              gutterBottom
-              className={`${styles.infoLine} ${styles.date}`}
-            >
-              {`${event.date}, ${event.time}`}
+    <Card className={styles.eventCard} onClick={() => onClick(event.id)}>
+      <CardContent className={styles.cardContent}>
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              mb: 1,
+            }}
+          >
+            <Typography variant="h6" component="h3" sx={{ pr: 1 }}>
+              {event.name}
             </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              className={`${styles.infoLine} ${styles.location}`}
-            >
-              {`${event.location}`}
-            </Typography>
+            <Chip
+              label={eventTypeMap[event.type]}
+              size="small"
+              variant="outlined"
+            />
           </Box>
-          <Box sx={{ mt: 2 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-              {event.sections.map((section) => (
-                <Chip key={section} label={section} size="small" />
-              ))}
-            </Box>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            gutterBottom
+            className={`${styles.infoLine} ${styles.date}`}
+          >
+            {`${event.date}, ${event.time}`}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className={`${styles.infoLine} ${styles.location}`}
+          >
+            {`${event.location}`}
+          </Typography>
+        </Box>
+        <Box sx={{ mt: 2 }}>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+            {event.sections.map((section) => (
+              <Chip key={section} label={section} size="small" />
+            ))}
           </Box>
-        </CardContent>
-      </Card>
-
-      <EventApplicationDialog
-        event={event}
-        open={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
-    </>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

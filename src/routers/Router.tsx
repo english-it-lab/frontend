@@ -10,6 +10,7 @@ const ProfilePage = lazy(
   () => import("@/containers/pages/Profile/ProfilePage"),
 );
 const EventsPage = lazy(() => import("@/containers/pages/Events/EventsPage"));
+const EventPage = lazy(() => import("@/containers/pages/Events/EventPage"));
 
 const RouterFallback = () => <div>Loading...</div>;
 
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path={PATHS.LOGIN} element={<AuthPage />} />
         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
         <Route path={PATHS.EVENTS} element={<EventsPage />} />
+        <Route path={PATHS.EVENT} element={<EventPage />} />
         <Route
           path={`${PATHS.ADMIN}/*`}
           element={

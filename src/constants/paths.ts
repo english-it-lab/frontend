@@ -9,6 +9,7 @@ const PATHS = {
   ADMIN_UNIVERSITIES: "/admin/universities",
   ROLES: "/roles",
   EVENTS: "/events",
+  EVENT: "/event/:eventId"
 };
 
 export default PATHS;
