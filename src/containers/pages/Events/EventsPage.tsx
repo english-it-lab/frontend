@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert, CircularProgress, Stack, Typography } from "@mui/material";
 
+import { mockEvents } from "@/constants/mockData.ts";
 import EventsList from "@/containers/Widgets/EventsList/EventsList.tsx";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux_hooks.ts";
 import type { IEvent } from "@/interfaces/eventInterface.ts";
@@ -133,7 +134,7 @@ const EventsPage = () => {
     };
   }, [sections]);
 
-  const events = sections.map((section) => mapSectionToEvent(section, topics));
+  const events = mockEvents;
   const isLoading = isSectionsLoading || isTopicsLoading;
   const error = sectionsError ?? topicsError;
 
