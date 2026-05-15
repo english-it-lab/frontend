@@ -153,3 +153,19 @@ export const juriesSlice = createSlice({
 export const { clearJuriesError, setJuriesError } = juriesSlice.actions;
 
 export default juriesSlice.reducer;
+
+
+
+const handleSubmit = async () => {
+  const normalizedName = name.trim();
+  if (!normalizedName) {
+    dispatch(setUniversitiesError("Название университета обязательно."));
+    return;
+  }
+  try {
+    await dispatch(createUniversityThunk({ name: normalizedName })).unwrap();
+    setName(""); // очистка поля после успешного создания
+  } catch (saveError) {
+    console.error("Failed to save university", saveError);
+  }
+};
