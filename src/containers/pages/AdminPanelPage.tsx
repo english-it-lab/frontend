@@ -21,6 +21,7 @@ import AdminJuriesPage from "@/containers/pages/Admin/pages/Juries/AdminJuriesPa
 import AdminSectionsPage from "@/containers/pages/Admin/pages/Sections/AdminSectionsPage";
 import AdminTopicsPage from "@/containers/pages/Admin/pages/Topics/AdminTopicsPage";
 import AdminUniversitiesPage from "@/containers/pages/Admin/pages/Universities/AdminUniversitiesPage";
+import AdminUsersPage from "@/containers/pages/Admin/pages/Users/AdminUsersPage";
 
 const adminMenuItems = [
   {
@@ -42,6 +43,10 @@ const adminMenuItems = [
   {
     label: "Университеты",
     path: PATHS.ADMIN_UNIVERSITIES,
+  },
+  {
+    label: "Пользователи",
+    path: PATHS.ADMIN_USERS,
   },
 ];
 
@@ -91,6 +96,7 @@ const AdminPanelPage = () => {
             <Route path="groups" element={<AdminGroupsPage />} />
             <Route path="juries" element={<AdminJuriesPage />} />
             <Route path="universities" element={<AdminUniversitiesPage />} />
+            <Route path="users" element={<AdminUsersPage />} />
             <Route
               path="*"
               element={<Navigate to={PATHS.ADMIN_SECTIONS} replace />}

@@ -5,6 +5,7 @@ import juriesReducer from "@/slices/juriesSlice";
 import sectionsReducer from "@/slices/sectionsSlice";
 import topicsReducer from "@/slices/topicsSlice";
 import universitiesReducer from "@/slices/universitiesSlice";
+import usersReducer from "@/slices/usersSlice";
 
 import userReducer from "../slices/userSlice";
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   topicsReducer,
   universitiesReducer,
   userReducer,
+  usersReducer,
 });
 
 export const setupStore = () => {
