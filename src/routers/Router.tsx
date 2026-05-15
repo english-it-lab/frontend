@@ -22,8 +22,8 @@ const Router = () => {
     <Suspense fallback={<RouterFallback />}>
       <Routes>
         <Route path="/"  element={<Navigate to={PATHS.LOGIN} replace />} />
-        <Route path={PATHS.TERMS} element={<TermsOfUsagePage />} />
-        <Route path={PATHS.POLICY} element={<PolicyPage />} />
+        <Route path={PATHS.TERMS} element={<TermsOfUsagePage setTerms={null}/>} />
+        <Route path={PATHS.POLICY} element={<PolicyPage setPolicies={null}/>} />
         <Route path={PATHS.LOGIN} element={<AuthPage />} />
         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
         <Route path={PATHS.EVENTS} element={<EventsPage />} />

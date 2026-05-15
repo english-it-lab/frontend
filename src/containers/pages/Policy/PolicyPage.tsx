@@ -1,7 +1,11 @@
-import { Box, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Paper, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
+import type { Dispatch, SetStateAction } from 'react';
 
+type PolicyPageProps = {
+  setPolicies: Dispatch<SetStateAction<boolean>> | null;
+};
 
-export default function PrivacyPolicy() {
+const PrivacyPolicy = ({setPolicies}: PolicyPageProps) => {
   return (
     <Box sx={{ py: 4, px: 2, minHeight: '100vh' }}>
       <Paper 
@@ -76,7 +80,11 @@ export default function PrivacyPolicy() {
             ))}
           </List>
         </Box>
+
+        {setPolicies != null && <Button onClick={() => {setPolicies(false)}}>Назад</Button>}
       </Paper>
     </Box>
   );
 }
+
+export default PrivacyPolicy;

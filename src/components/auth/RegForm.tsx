@@ -14,13 +14,15 @@ import type { registerData } from "@/types/authorizationTypes";
 
 type RegFormProps = {
   setMode: Dispatch<SetStateAction<boolean>>;
+  setTerms: Dispatch<SetStateAction<boolean>>;
+  setPolicies: Dispatch<SetStateAction<boolean>>;
 };
 
 type RegisterFormData = registerData & {
   confirm_password: string;
 };
 
-const RegForm = ({ setMode }: RegFormProps) => {
+const RegForm = ({ setMode, setTerms, setPolicies }: RegFormProps) => {
   const {
     register,
     handleSubmit,
@@ -205,10 +207,10 @@ const RegForm = ({ setMode }: RegFormProps) => {
         <input id="agreement" type="checkbox" onChange={checkboxChange} />
         <label htmlFor="agreement">
           Я согласен с{" "}
-          <span className={styles.conditionsButton}><a href="/policy"> условиями пользования </a></span>
+          <span className={styles.conditionsButton} onClick={() => {setTerms(true)}}> условиями пользования </span>
           <span> и </span>
-          <span className={styles.conditionsButton}>
-            <a href="/terms">политикой конфидециальности</a>
+          <span className={styles.conditionsButton} onClick={() => {setPolicies(true)}}>
+            политикой конфидециальности
           </span>
         </label>
       </div>

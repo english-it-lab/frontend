@@ -7,6 +7,8 @@ import { authEnabled } from "@/config/app-config";
 import PATHS from "@/constants/paths";
 import { useAppSelector } from "@/hooks/redux_hooks";
 import styles from "@/styles/AuthPage.module.scss";
+import PolicyPage from "./Policy/PolicyPage";
+import TermsOfUsagePage from "./Policy/TermsOfUsage";
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ const AuthPage = () => {
     (state) => state.userReducer.isAuthChecked,
   );
   const [mode, setMode] = useState<boolean>(true);
+  const [terms, setTerms] = useState<boolean>(false);
+  const [policies, setPolicies] = useState<boolean>(false);
 
   useEffect(() => {
     if (!authEnabled) {
@@ -28,9 +32,14 @@ const AuthPage = () => {
   }, [isAuthChecked, isLogin, navigate]);
 
   return (
-    <div className={styles.authPageContainer}>
-      {mode ? <RegForm setMode={setMode} /> : <AuthForm setMode={setMode} />}
+    <div>
+      {policies && <PolicyPage setPolicies={setPolicies}/>}
+      {terms && <TermsOfUsagePage setTerms={setTerms}/>}
+      {!terms && !policies && <div className={styles.authPageContainer}>
+      {mode ? <RegForm setMode={setMode} setTerms={setTerms} setPolicies={setPolicies} /> : <AuthForm setMode={setMode} />}
+    </div>}
     </div>
+    
   );
 };
 

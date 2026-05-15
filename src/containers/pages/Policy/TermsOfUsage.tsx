@@ -1,7 +1,12 @@
 
-import { Box, Paper, Typography, List, ListItem } from '@mui/material';
+import { Box, Paper, Typography, List, ListItem, Button } from '@mui/material';
+import type { Dispatch, SetStateAction } from 'react';
 
-export default function TermsOfUsagePage() {
+type TermsPageProps = {
+  setTerms: Dispatch<SetStateAction<boolean>> | null;
+};
+
+const TermsOfUsagePage = ({setTerms}: TermsPageProps) => {
   return (
     <Box sx={{ py: 4, px: 2, minHeight: '100vh' }}>
       <Paper
@@ -77,7 +82,10 @@ export default function TermsOfUsagePage() {
             ))}
           </List>
         </Box>
+        {setTerms != null && <Button onClick={() => {setTerms(false)}}>Назад</Button>}
       </Paper>
     </Box>
   );
 }
+
+export default TermsOfUsagePage;
